@@ -1,32 +1,34 @@
 (function( $ ) {
 	'use strict';
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+	$.fn.deadSimpleCarousel = function () {
+		var self = this;
+		var speed = self.data("speed") || '3000';
+		var slideCount = self.find('img').length;
+		var slideWidth = self.width();
 
+		// Prevent content flickering
+		self.find('.dscw__slides').css('opacity', '1');
+
+		self.find('.dscw__slides').css('width', slideCount * slideWidth + 'px');
+		self.find('.dscw__slides__image').css('width', slideWidth+'px');
+
+		var currentSlide = 1;
+
+		var slideInterval = setInterval(function () {
+			self.find('.dscw__slides').css('transform', 'translateX(' + -slideWidth * currentSlide + 'px)');
+
+			if (currentSlide < slideCount - 1) {
+				currentSlide++;
+			} else {
+				currentSlide = 1;
+			}
+		}, speed);
+
+		return self;
+	};
+
+	$(function(){
+		$('.dscw').deadSimpleCarousel();
+	});
 })( jQuery );

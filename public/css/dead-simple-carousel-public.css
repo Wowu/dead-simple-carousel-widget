@@ -2,3 +2,27 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.dscw {
+	width: 100%;
+}
+
+.dscw__slides {
+	height: 300px;
+	width: 100%;
+	overflow: hidden;
+	display: block;
+	opacity: 0;
+
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.dscw__slides__image {
+	max-height: 300px;
+	float: left;
+	width: 100%;
+}

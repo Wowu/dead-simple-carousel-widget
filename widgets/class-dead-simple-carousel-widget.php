@@ -26,11 +26,19 @@
 
       $slides_count = $instance['slides_count'];
 
-      for ( $i = 1; $i <= $slides_count; $i++ ) {
-        ?>
-          <img style="max-width: 100%" src="<?php echo $instance['image'.$i]; ?>" />
-        <?php
-      }
+      ?>
+
+        <div class="dscw" data-speed="2000">
+          
+          <div class="dscw__slides">
+            <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
+                <img class="dscw__slides__image" src="<?php echo $instance['image'.$i]; ?>" />
+            <?php endfor; ?>
+          </div>
+
+        </div>
+
+      <?php
 
       echo $args['after_widget'];
     }
