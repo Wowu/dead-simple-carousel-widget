@@ -1,0 +1,28 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+ .clearfix:after,
+ .cf:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.placeholder {
+	text-align: center;
+	border: 5px dashed #565656;
+	margin: 10px 0;
+	padding: 20px;
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.dscw img {
+	padding: 10px 0;
+}
