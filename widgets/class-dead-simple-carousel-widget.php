@@ -28,7 +28,7 @@
 
       ?>
 
-        <div class="dscw" data-speed="2000">
+        <div class="dscw" data-speed="<?php echo esc_attr( $instance['slide_time'] ); ?>">
           
           <div class="dscw__slides">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
@@ -47,28 +47,37 @@
     public function form( $instance ) {
       $title         = isset( $instance['title'] ) ? $instance['title'] : __( 'New title', 'dead-simple-carousel' );
       $slides_count  = isset( $instance['slides_count'] ) ? $instance['slides_count'] : 1;
+      $slide_time  = isset( $instance['slide_time'] ) ? $instance['slide_time'] : 3000;
 
       ?>
-        <?php // dsc - Dead Simple Carousel Widget ?>
+        <?php // dscw - Dead Simple Carousel Widget ?>
         <div class="dscw">
           <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'dead-simple-carousel'); ?></label>
             <input 
               type="text" 
               class="widefat" 
               id="<?php echo $this->get_field_id( 'title' ); ?>" 
               name="<?php echo $this->get_field_name( 'title' ); ?>" 
-              value="<?php echo esc_attr( $title ); ?>" 
-              />
-
-            <input class="slides-count" type="hidden" name="<?php echo $this->get_field_name( 'slides_count' ); ?>" id="<?php echo $this->get_field_id( 'slides_count' ); ?>" value="<?php echo $slides_count; ?>">
+              value="<?php echo esc_attr( $title ); ?>" />
           </p>
+
+          <p>
+            <label for="<?php echo $this->get_field_id( 'slide_time' ); ?>"><?php _e( 'Time each slide is visible: (ms)', 'dead-simple-carousel'); ?></label>
+            <input 
+              type="text" 
+              class="widefat" 
+              id="<?php echo $this->get_field_id( 'slide_time' ); ?>" 
+              name="<?php echo $this->get_field_name( 'slide_time' ); ?>" 
+              value="<?php echo esc_attr( $slide_time ); ?>" />
+          </p>
+
+          <input class="slides-count" type="hidden" name="<?php echo $this->get_field_name( 'slides_count' ); ?>" id="<?php echo $this->get_field_id( 'slides_count' ); ?>" value="<?php echo $slides_count; ?>">
           
           <div class="slides <?php echo $this->id; ?>">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
-              <?php 
-                $image[$i] = isset( $instance['image'.$i] ) ? $instance['image'.$i] : '';
-              ?>
+              <?php $image[$i] = isset( $instance['image'.$i] ) ? $instance['image'.$i] : ''; ?>
+
               <div class="slide slide-<?php echo $i; ?> cf">
 
                 <?php if ( $image[$i] ) : ?>
@@ -77,19 +86,19 @@
                   </div>
 
                   <div class="placeholder hidden">
-                    <?php _e( 'No image selected' ); ?>
+                    <?php _e( 'No image selected', 'dead-simple-carousel' ); ?>
                   </div>
                 <?php else: ?>
                   <div class="thumbnail thumbnail-image"></div>
 
                   <div class="placeholder">
-                    <?php _e( 'No image selected' ); ?>
+                    <?php _e( 'No image selected', 'dead-simple-carousel' ); ?>
                   </div>
                 <?php endif; ?>
                 
                 <div class="actions cf">
-                    <button type="button" class="button delete-button alignleft"><?php _e('Remove', 'viral'); ?></button>
-                    <button type="button" class="button upload-button alignright"><?php _e('Select Image', 'viral'); ?></button>
+                    <button type="button" class="button delete-button alignleft"><?php _e('Remove', 'dead-simple-carousel'); ?></button>
+                    <button type="button" class="button upload-button alignright"><?php _e('Select Image', 'dead-simple-carousel'); ?></button>
                     
                     <input name="<?php echo $this->get_field_name( 'image'.$i ); ?>" id="<?php echo $this->get_field_id( 'image'.$i ); ?>" class="upload-id" type="hidden" value="<?php echo esc_url($image[$i]) ?>"/>
                 </div>
@@ -109,6 +118,7 @@
       $instance = array();
       $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
       $instance['slides_count'] = ( ! empty( $new_instance['slides_count'] ) ) ? strip_tags( $new_instance['slides_count'] ) : '';
+      $instance['slide_time'] = ( ! empty( $new_instance['slide_time'] ) ) ? strip_tags( $new_instance['slide_time'] ) : '';
 
       for ( $i = 1; $i <= $instance['slides_count']; $i++ ) {
         $instance['image'.$i] = ( ! empty( $new_instance['image'.$i] ) ) ? strip_tags( $new_instance['image'.$i] ) : '';
