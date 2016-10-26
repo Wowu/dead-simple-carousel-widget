@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2016-10-26 15:24+0000\n"
+"Language: pl-PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10 >= 2 && n%10<=4 "
+"&&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"PO-Revision-Date: 2016-10-26 15:25+0000\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"Project-Id-Version: Dead Simple Carousel\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: admin <kamusur+wordpress@gmail.com>\n"
+"Language-Team: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#. Widget name will appear in UI
+#: widgets/class-dead-simple-carousel-widget.php:11
+msgid "Dead Simple Carousel Widget"
+msgstr "Dead Simple Carousel Widget"
+
+#: widgets/class-dead-simple-carousel-widget.php:66
+msgid "Slide duration: (ms)"
+msgstr "Czas trwania slajdu: (ms)"
+
+#. Name of the plugin
+msgid "Dead Simple Carousel"
+msgstr "Dead Simple Carousel"
+
+#. Description of the plugin
+msgid ""
+"This is a short description of what the plugin does. It's displayed in the "
+"WordPress admin area."
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "http://musur.pl/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Karol Musur"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:14
+msgid "Simple widget for displaying images"
+msgstr "Prosty widget wyświetlający zdjęcia i obrazy"
+
+#: widgets/class-dead-simple-carousel-widget.php:48
+msgid "New title"
+msgstr "Nowy tytuł"
+
+#: widgets/class-dead-simple-carousel-widget.php:56
+msgid "Title:"
+msgstr "Tytuł:"
+
+#: widgets/class-dead-simple-carousel-widget.php:89
+#: widgets/class-dead-simple-carousel-widget.php:95
+msgid "No image selected"
+msgstr "NIe wybrano zdjęcia"
+
+#: widgets/class-dead-simple-carousel-widget.php:100
+msgid "Remove"
+msgstr "Usuń"
+
+#: widgets/class-dead-simple-carousel-widget.php:101
+msgid "Select Image"
+msgstr "Wybierz zdjęcie"

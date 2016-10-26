@@ -63,7 +63,7 @@
           </p>
 
           <p>
-            <label for="<?php echo $this->get_field_id( 'slide_time' ); ?>"><?php _e( 'Time each slide is visible: (ms)', 'dead-simple-carousel'); ?></label>
+            <label for="<?php echo $this->get_field_id( 'slide_time' ); ?>"><?php _e( 'Slide duration: (ms)', 'dead-simple-carousel'); ?></label>
             <input 
               type="text" 
               class="widefat" 

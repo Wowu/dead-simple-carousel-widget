@@ -1,0 +1,61 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2016-10-26 15:24+0000\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. Widget name will appear in UI
+#: widgets/class-dead-simple-carousel-widget.php:11
+msgid "Dead Simple Carousel Widget"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:14
+msgid "Simple widget for displaying images"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:48
+msgid "New title"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:56
+msgid "Title:"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:66
+msgid "Slide duration: (ms)"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:89
+#: widgets/class-dead-simple-carousel-widget.php:95
+msgid "No image selected"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:100
+msgid "Remove"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:101
+msgid "Select Image"
+msgstr ""
+
+#. Name of the plugin
+msgid "Dead Simple Carousel"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This is a short description of what the plugin does. It's displayed in the "
+"WordPress admin area."
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "http://musur.pl/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Karol Musur"
+msgstr ""
