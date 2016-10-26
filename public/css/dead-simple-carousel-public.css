@@ -21,7 +21,8 @@
 	transition: transform .3s ease-in-out;
 }
 
-.dscw__slides__image {
+.dscw__slides__image,
+.dscw__slides__image img {
 	max-height: 300px;
 	float: left;
 	width: 100%;

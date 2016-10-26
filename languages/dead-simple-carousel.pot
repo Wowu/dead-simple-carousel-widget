@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2016-10-26 15:24+0000\n"
+"POT-Creation-Date: 2016-10-26 15:47+0000\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -16,28 +16,32 @@ msgstr ""
 msgid "Simple widget for displaying images"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:48
+#: widgets/class-dead-simple-carousel-widget.php:54
 msgid "New title"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:56
+#: widgets/class-dead-simple-carousel-widget.php:62
 msgid "Title:"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:66
+#: widgets/class-dead-simple-carousel-widget.php:72
 msgid "Slide duration: (ms)"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:89
-#: widgets/class-dead-simple-carousel-widget.php:95
+#: widgets/class-dead-simple-carousel-widget.php:98
+#: widgets/class-dead-simple-carousel-widget.php:104
 msgid "No image selected"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:100
+#: widgets/class-dead-simple-carousel-widget.php:110
+msgid "Image hyperlink:"
+msgstr ""
+
+#: widgets/class-dead-simple-carousel-widget.php:124
 msgid "Remove"
 msgstr ""
 
-#: widgets/class-dead-simple-carousel-widget.php:101
+#: widgets/class-dead-simple-carousel-widget.php:125
 msgid "Select Image"
 msgstr ""
 

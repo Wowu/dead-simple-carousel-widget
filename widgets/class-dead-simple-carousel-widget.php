@@ -32,7 +32,13 @@
           
           <div class="dscw__slides">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
+              <?php if ( $instance['url'.$i] ) : ?>
+                <a class="dscw__slides__image" href="<?php echo $instance['url'.$i]; ?>">
+                  <img src="<?php echo $instance['image'.$i]; ?>" />
+                </a>
+              <?php else : ?>
                 <img class="dscw__slides__image" src="<?php echo $instance['image'.$i]; ?>" />
+              <?php endif; ?>
             <?php endfor; ?>
           </div>
 
@@ -76,7 +82,10 @@
           
           <div class="slides <?php echo $this->id; ?>">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
-              <?php $image[$i] = isset( $instance['image'.$i] ) ? $instance['image'.$i] : ''; ?>
+              <?php
+                $image[$i] = isset( $instance['image'.$i] ) ? $instance['image'.$i] : '';
+                $url[$i] = isset( $instance['url'.$i] ) ? $instance['url'.$i] : '';
+              ?>
 
               <div class="slide slide-<?php echo $i; ?> cf">
 
@@ -95,6 +104,21 @@
                     <?php _e( 'No image selected', 'dead-simple-carousel' ); ?>
                   </div>
                 <?php endif; ?>
+
+                <p class="url-box">
+                  <label for="<?php echo $this->get_field_id( 'url'.$i ); ?>">
+                    <?php _e( 'Image hyperlink:', 'dead-simple-carousel'); ?>
+                  </label>
+
+                  <input 
+                    type="text" 
+                    class="widefat"
+                    placeholder="http(s)://" 
+                    id="<?php echo $this->get_field_id( 'url'.$i ); ?>" 
+                    name="<?php echo $this->get_field_name( 'url'.$i ); ?>" 
+                    value="<?php echo esc_attr( $url[$i] ); ?>" />
+                </p>
+
                 
                 <div class="actions cf">
                     <button type="button" class="button delete-button alignleft"><?php _e('Remove', 'dead-simple-carousel'); ?></button>
@@ -122,6 +146,7 @@
 
       for ( $i = 1; $i <= $instance['slides_count']; $i++ ) {
         $instance['image'.$i] = ( ! empty( $new_instance['image'.$i] ) ) ? strip_tags( $new_instance['image'.$i] ) : '';
+        $instance['url'.$i] = ( ! empty( $new_instance['url'.$i] ) ) ? strip_tags( $new_instance['url'.$i] ) : '';
       }
 
       return $instance;
