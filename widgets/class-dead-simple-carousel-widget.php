@@ -97,7 +97,7 @@
             <?php endfor; ?>
           </div>
           <p>
-            <button class="add-slide-button button widefat">
+            <button id="<?php echo $this->id; ?>" class="add-slide-button button widefat ">
               <i class="fa fa-plus"></i>
             </button>
           </p>
