@@ -92,13 +92,14 @@
 
     $('.add-slide-button').click(function(event) {
       event.preventDefault();
-
+      
+      var slidesID = '.' + $(this).attr("id");
       var slidesCount = $('.slides-count').val();
       slidesCount++;
       $('.slides-count').val(slidesCount);
 
       // Get prop values
-      var $slide = $('.dscw .slide:last');
+      var $slide = $('.dscw ' + slidesID + ' .slide:last');
       var name = $slide.find('input[type="hidden"]').prop('name');
       var id = $slide.find('input[type="hidden"]').prop('id');
       var number = parseInt(name.match(/image(\d+)/)[1]);
