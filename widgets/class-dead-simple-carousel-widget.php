@@ -64,7 +64,7 @@
             <input class="slides-count" type="hidden" name="<?php echo $this->get_field_name( 'slides_count' ); ?>" id="<?php echo $this->get_field_id( 'slides_count' ); ?>" value="<?php echo $slides_count; ?>">
           </p>
           
-          <div class="slides">
+          <div class="slides <?php echo $this->id; ?>">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
               <?php 
                 $image[$i] = isset( $instance['image'.$i] ) ? $instance['image'.$i] : '';
