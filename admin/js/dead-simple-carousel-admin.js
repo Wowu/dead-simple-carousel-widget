@@ -92,7 +92,8 @@
 
     $('.add-slide-button').click(function(event) {
       event.preventDefault();
-
+      
+      var slidesID = '.' + $(this).attr("id");
       var slidesCount = $('.slides-count').val();
       slidesCount++;
       $('.slides-count').val(slidesCount);
