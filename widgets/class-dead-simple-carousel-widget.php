@@ -32,13 +32,17 @@
           
           <div class="dscw__slides">
             <?php for ( $i = 1; $i <= $slides_count; $i++ ) : ?>
+
               <?php if ( $instance['url'.$i] ) : ?>
-                <a class="dscw__slides__image" href="<?php echo $instance['url'.$i]; ?>">
+                <?php $target = $instance['new_tab'.$i] ? '_blank' : ''; ?>
+
+                <a class="dscw__slides__image" href="<?php echo $instance['url'.$i]; ?>" target="<?php echo $target; ?>">
                   <img src="<?php echo $instance['image'.$i]; ?>" />
                 </a>
               <?php else : ?>
                 <img class="dscw__slides__image" src="<?php echo $instance['image'.$i]; ?>" />
               <?php endif; ?>
+
             <?php endfor; ?>
           </div>
 
@@ -59,23 +63,19 @@
         <?php // dscw - Dead Simple Carousel Widget ?>
         <div class="dscw">
           <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'dead-simple-carousel'); ?></label>
-            <input 
-              type="text" 
-              class="widefat" 
-              id="<?php echo $this->get_field_id( 'title' ); ?>" 
-              name="<?php echo $this->get_field_name( 'title' ); ?>" 
-              value="<?php echo esc_attr( $title ); ?>" />
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>">
+              <?php _e( 'Title:', 'dead-simple-carousel'); ?>
+            </label>
+
+            <input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" />
           </p>
 
           <p>
-            <label for="<?php echo $this->get_field_id( 'slide_time' ); ?>"><?php _e( 'Slide duration: (ms)', 'dead-simple-carousel'); ?></label>
-            <input 
-              type="text" 
-              class="widefat" 
-              id="<?php echo $this->get_field_id( 'slide_time' ); ?>" 
-              name="<?php echo $this->get_field_name( 'slide_time' ); ?>" 
-              value="<?php echo esc_attr( $slide_time ); ?>" />
+            <label for="<?php echo $this->get_field_id( 'slide_time' ); ?>">
+              <?php _e( 'Slide duration: (ms)', 'dead-simple-carousel'); ?>
+            </label>
+
+            <input type="text" class="widefat" id="<?php echo $this->get_field_id( 'slide_time' ); ?>" name="<?php echo $this->get_field_name( 'slide_time' ); ?>" value="<?php echo esc_attr( $slide_time ); ?>" />
           </p>
 
           <input class="slides-count" type="hidden" name="<?php echo $this->get_field_name( 'slides_count' ); ?>" id="<?php echo $this->get_field_id( 'slides_count' ); ?>" value="<?php echo $slides_count; ?>">
@@ -105,19 +105,23 @@
                   </div>
                 <?php endif; ?>
 
-                <p class="url-box">
-                  <label for="<?php echo $this->get_field_id( 'url'.$i ); ?>">
-                    <?php _e( 'Image hyperlink:', 'dead-simple-carousel'); ?>
-                  </label>
+                <div class="url-box">
+                  <p>
+                    <label for="<?php echo $this->get_field_id( 'url'.$i ); ?>">
+                      <?php _e( 'Image hyperlink:', 'dead-simple-carousel'); ?>
+                    </label>
 
-                  <input 
-                    type="text" 
-                    class="widefat"
-                    placeholder="http(s)://" 
-                    id="<?php echo $this->get_field_id( 'url'.$i ); ?>" 
-                    name="<?php echo $this->get_field_name( 'url'.$i ); ?>" 
-                    value="<?php echo esc_attr( $url[$i] ); ?>" />
-                </p>
+                    <input type="text" class="widefat" placeholder="http(s)://" id="<?php echo $this->get_field_id( 'url'.$i ); ?>" name="<?php echo $this->get_field_name( 'url'.$i ); ?>" value="<?php echo esc_attr( $url[$i] ); ?>" />
+                  </p>
+
+                  <p>
+                    <label for="<?php echo $this->get_field_id( 'new_tab'.$i ); ?>">
+                      <input type="checkbox" id="<?php echo $this->get_field_id( 'new_tab'.$i ); ?>" name="<?php echo $this->get_field_name( 'new_tab'.$i ); ?>" <?php checked( $instance['new_tab'.$i], 'on' ); ?> />
+
+                      <?php _e( 'Open link in new tab?', 'dead-simple-carousel' ); ?>
+                    </label>
+                  </p>
+                </div>
 
                 
                 <div class="actions cf">
@@ -147,6 +151,7 @@
       for ( $i = 1; $i <= $instance['slides_count']; $i++ ) {
         $instance['image'.$i] = ( ! empty( $new_instance['image'.$i] ) ) ? strip_tags( $new_instance['image'.$i] ) : '';
         $instance['url'.$i] = ( ! empty( $new_instance['url'.$i] ) ) ? strip_tags( $new_instance['url'.$i] ) : '';
+        $instance['new_tab'.$i] = $new_instance['new_tab'.$i];
       }
 
       return $instance;
