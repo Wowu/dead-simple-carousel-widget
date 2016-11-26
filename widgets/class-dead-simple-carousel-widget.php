@@ -1,5 +1,4 @@
 <?php
-
   class dead_simple_carousel_widget extends WP_Widget {
 
     function __construct() {
@@ -26,9 +25,9 @@
 
       $slides_count = $instance['slides_count'];
 
-      $data = Timber::get_context();
       $data['instance'] = $instance;
       $data['slides_count'] = $slides_count;
+
       Timber::render('partials/dead-simple-carousel-widget-frontend.twig', $data);
 
       echo $args['after_widget'];
@@ -40,7 +39,53 @@
       $slides_count  = isset( $instance['slides_count'] ) ? $instance['slides_count'] : 1;
       $slide_time  = isset( $instance['slide_time'] ) ? $instance['slide_time'] : 3000;
 
-      require plugin_dir_path(__FILE__) . 'partials/dead-simple-carousel-widget-backend.php';
+      $data = array(
+        'id' => $this->id,
+
+        'title' => array(
+          'text' => $title,
+          'id' => $this->get_field_id( 'title' ),
+          'name' => $this->get_field_name( 'title' ),
+        ),
+      
+        'slides_count' => array(
+          'count' => $slides_count,
+          'id' => $this->get_field_id( 'slides_count' ),
+          'name' => $this->get_field_name( 'slides_count' ),
+        ),
+
+        'slide_time' => array(
+          'time' => $slide_time,
+          'id' => $this->get_field_id( 'slide_time' ),
+          'name' => $this->get_field_name( 'slide_time' ),
+        ),
+
+        'image' => array(),
+      );
+
+      for ( $i = 1; $i <= $slides_count; $i++ ) {
+        $image = array(
+          'name' => $this->get_field_name( 'image'.$i ),
+          'id' => $this->get_field_id( 'image'.$i ),
+          'src' => isset( $instance['image'.$i] ) ? $instance['image'.$i] : null,
+          'url' => array(
+            'url' => isset( $instance['url'.$i] ) ? $instance['url'.$i] : '',
+            'id' => $this->get_field_id( 'url'.$i ),
+            'name' => $this->get_field_name( 'url'.$i ),
+          ),
+          'new_tab' => array(
+            'id' => $this->get_field_id( 'new_tab'.$i ),
+            'name' => $this->get_field_name( 'new_tab'.$i ),
+            'checked' => isset( $instance['new_tab'.$i] ) ? 'checked="checked"' : '',
+          )
+        );
+
+        $data['image'][$i] = $image;
+      }
+
+      Timber::render( 'partials/dead-simple-carousel-widget-backend.twig', $data);
+
+      var_dump($instance);
     }
 
     public function update( $new_instance, $old_instance ) {

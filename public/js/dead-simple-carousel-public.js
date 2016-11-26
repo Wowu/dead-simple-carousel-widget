@@ -17,10 +17,10 @@
 		var currentSlide = 1;
 
 		var slideInterval = setInterval(function () {
-			self.find('.dscw__slides').css('transform', 'translateX(' + -slideWidth * currentSlide + 'px)');
+			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
 
-			if (currentSlide == slideCount - 1) {
-				currentSlide = 0;
+			if (currentSlide == slideCount) {
+				currentSlide = 1;
 			} else {
 				currentSlide++;
 			}

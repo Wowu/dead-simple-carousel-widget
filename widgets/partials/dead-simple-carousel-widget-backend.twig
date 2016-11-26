@@ -1,0 +1,79 @@
+<div class="dscw">
+  <p>
+    <label for="{{ title.id }}">
+      {{ __('Title:', 'dead-simple-carousel') }}
+    </label>
+
+    <input type="text" class="widefat" id="{{ title.id }}" name="{{ title.name }}" value={{ title.text | e }}>
+  </p>
+
+  <p>
+    <label for="{{ slide_time.id }}">
+      {{ __( 'Slide duration: (ms)', 'dead-simple-carousel') }}
+    </label>
+
+    <input type="text" class="widefat" id="{{ slide_time.id }}" name="{{ slide_time.name }}" value="{{ slide_time.time | e }}" />
+  </p>
+
+
+  <input class="slides-count" type="hidden" name="{{ slides_count.name }}" id="{{ slides_count.id }}" value="{{ slides_count.count | e }}">
+  
+  <div class="slides {{ id }}">
+    {% for i in 1..slides_count %}
+      <div class="slide slide-{{ i }} cf">
+
+        {% if image[i].url.url %}
+          <div class="thumbnail thumbnail-image">
+            <img src="{{ image[i].src }}" style="max-width: 100%"/>
+          </div>
+
+          <div class="placeholder hidden">
+            {{ __('No image selected', 'dead-simple-carousel') }}
+          </div>
+        {% else %}
+          <div class="thumbnail thumbnail-image"></div>
+
+          <div class="placeholder">
+            {{ __('No image selected', 'dead-simple-carousel') }}
+          </div>
+        {% endif %}
+
+        <div class="url-box">
+          <p>
+            <label for="{{ image[i].url.id }}">
+              {{ __('Image hyperlink:', 'dead-simple-carousel') }}
+            </label>
+
+            <input type="text" class="widefat" placeholder="http(s)://" id="{{ image[i].url.id }}" name="{{ image[i].url.name }}" value="{{ image[i].url.url }}" />
+          </p>
+
+          <p>
+            <label for="{{ image[i].new_tab.id }}">
+              <input type="checkbox" id="{{ image[i].new_tab.id }}" name="{{ image[i].new_tab.name }}" {{ image[i].new_tab.checked }} />
+
+              {{ __( 'Open link in new tab?', 'dead-simple-carousel' ) }}
+            </label>
+          </p>
+        </div>
+
+        
+        <div class="actions cf">
+            <button type="button" class="button delete-button alignleft">
+              {{ __('Remove', 'dead-simple-carousel') }}
+            </button>
+            <button type="button" class="button upload-button alignright">
+              {{ __('Select Image', 'dead-simple-carousel') }}
+            </button>
+            
+            <input name="{{ image[i].name }}" id="{{ image[i].id }}" class="upload-id" type="hidden" value="{{ image[i].src }}"/>
+        </div>
+        
+      </div>
+    {% endfor %}
+  </div>
+  <p>
+    <button id="{{ id }}" class="add-slide-button button widefat ">
+      <i class="fa fa-plus"></i>
+    </button>
+  </p>
+</div>
