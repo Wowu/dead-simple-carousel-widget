@@ -31,6 +31,13 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Require composer dependencies
+ */
+require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
+
+$timber = new \Timber\Timber();
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-dead-simple-carousel-activator.php
  */

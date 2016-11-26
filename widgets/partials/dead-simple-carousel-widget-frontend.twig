@@ -1,0 +1,20 @@
+<div class="dscw" data-speed="{{ instance.slide_time | e }}">
+  <div class="dscw__slides">
+    {% for i in 1..slides_count %}
+
+      {% if instance['url'~i] %}
+        {% set target = '' %}
+
+        {% if instance['new_tab'~i] == 'on' %}
+          {% set target = '_blank' %}
+        {% endif %}
+
+        <a class="dscw__slides__image" href="{{ instance['url'~i] }}" target="{{ target }}">
+          <img src="{{ instance['image'~i] }}" />
+        </a>
+      {% else %}
+        <img class="dscw__slides__image" src="{{ instance['image'~i] }}" />
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
