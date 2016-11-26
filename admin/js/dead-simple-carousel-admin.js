@@ -41,8 +41,6 @@
        // Send the attachment id to our hidden input
        imageIdHiddenButton.val(attachment.url);
 
-       // Hide the add image link
-       addImageLink.addClass('hidden');
        placeholder.addClass('hidden');
 
        // Unhide the remove image link
@@ -104,10 +102,8 @@
       var id = $slide.find('input[type="hidden"]').prop('id');
       var number = parseInt(name.match(/image(\d+)/)[1]);
 
-      number++;
-
-      name = name.replace(/image\d+/, 'image'+number);
-      id = id.replace(/image\d+/, 'image'+number);
+      name = name.replace(/image\d+/, 'image'+number+1);
+      id = id.replace(/image\d+/, 'image'+number+1);
 
       var $clone = $slide.clone();
 
@@ -119,11 +115,20 @@
       $clone.find('.placeholder').removeClass('hidden');
       $clone.find('.upload-id').val('');
       $clone.find('.thumbnail-image').html('');
+      $clone.find('input[type="checkbox"]').replaceNumber(number, number+1).removeAttr('checked');
+      $clone.find('input[name*="url"]').replaceNumber(number, number+1).val('');
 
       $slide.after( $clone );
 
       updateBindings();
     });
+  }
+
+
+  $.fn.replaceNumber = function (old_number, new_number) {
+    this.attr('id', this.attr('id').replace(old_number, new_number));
+    this.attr('name', this.attr('name').replace(old_number, new_number));
+    return this;
   }
 
   function updateOrder() {
@@ -157,6 +162,7 @@
     $slide.find('input[type="hidden"]').prop('id', id);
   }
 
+
   $(function() {
 
     updateBindings();
@@ -174,7 +180,6 @@
   });
 
   $(document).on('widget-updated widget-added', function() {
-
     updateBindings();
 
     $('.slides').each(function(index, el) {
@@ -186,7 +191,6 @@
         }
       });
     });
-
   });
 
 })( jQuery );

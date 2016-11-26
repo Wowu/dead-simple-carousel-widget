@@ -85,7 +85,9 @@
 
       Timber::render( 'partials/dead-simple-carousel-widget-backend.twig', $data);
 
+      echo '<pre>';
       var_dump($instance);
+      echo '</pre>';
     }
 
     public function update( $new_instance, $old_instance ) {
