@@ -19,10 +19,10 @@
   <input class="slides-count" type="hidden" name="{{ slides_count.name }}" id="{{ slides_count.id }}" value="{{ slides_count.count | e }}">
   
   <div class="slides {{ id }}">
-    {% for i in 1..slides_count %}
+    {% for i in 1..slides_count.count %}
       <div class="slide slide-{{ i }} cf">
 
-        {% if image[i].url.url %}
+        {% if image[i].src %}
           <div class="thumbnail thumbnail-image">
             <img src="{{ image[i].src }}" style="max-width: 100%"/>
           </div>

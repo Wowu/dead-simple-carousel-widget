@@ -118,6 +118,7 @@
       $clone.find('input[type="checkbox"]').replaceNumber(number, number+1).removeAttr('checked');
       $clone.find('input[name*="url"]').replaceNumber(number, number+1).val('');
 
+
       $slide.after( $clone );
 
       updateBindings();
@@ -126,8 +127,14 @@
 
 
   $.fn.replaceNumber = function (old_number, new_number) {
-    this.attr('id', this.attr('id').replace(old_number, new_number));
-    this.attr('name', this.attr('name').replace(old_number, new_number));
+    var field = parseFieldName(this.attr('name'));
+    field.name = field.name.replace(old_number, new_number); 
+    this.attr('name', getFieldName(field));
+
+    field = parseFieldID(this.attr('id'));
+    field.name = field.name.replace(old_number, new_number); 
+    this.attr('id', getFieldID(field));
+
     return this;
   }
 
@@ -151,17 +158,47 @@
   }
 
   function setSlideID($slide, newID) {
-    var name = $slide.find('input[type="hidden"]').prop('name');
-    var id = $slide.find('input[type="hidden"]').prop('id');
-    var number = parseInt(name.match(/image(\d+)/)[1]);
-
-    name = name.replace(/image\d+/, 'image'+newID);
-    id = id.replace(/image\d+/, 'image'+newID);
-
-    $slide.find('input[type="hidden"]').prop('name', name);
-    $slide.find('input[type="hidden"]').prop('id', id);
+    var $image = $slide.find('input[type="hidden"]');
+    var image = parseFieldName($image.attr('name'));
+    var oldID = parseInt(image.name.match(/(\d+)/)[1]);
+  
+    $image.replaceNumber(oldID, newID);
+    $slide.find('input[type="checkbox"]').replaceNumber(oldID, newID);
+    $slide.find('input[name*="url"]').replaceNumber(oldID, newID);
   }
 
+  // https://developer.wordpress.org/reference/classes/wp_widget/get_field_name/
+  function parseFieldName(name) {
+    var matches = name.match(/widget-(\w+)\[(\w+)\]\[(\w+)\]/);
+
+    return {
+      widget: {
+        name: matches[1],
+        ID: matches[2]
+      },
+      name: matches[3]
+    };
+  }
+
+  function getFieldName(field) {
+    return 'widget-'+field.widget.name+'['+field.widget.ID+']['+field.name+']';
+  }
+
+  function parseFieldID(ID) {
+    var matches = ID.match(/widget-(\w+)-(\w+)-(\w+)/);
+
+    return {
+      widget: {
+        name: matches[1],
+        ID: matches[2]
+      },
+      name: matches[3]
+    };
+  }
+
+  function getFieldID(field) {
+    return 'widget-'+field.widget.name+'-'+field.widget.ID+'-'+field.name;
+  }
 
   $(function() {
 
