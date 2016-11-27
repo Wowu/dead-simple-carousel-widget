@@ -17,13 +17,13 @@
 		var currentSlide = 1;
 
 		var slideInterval = setInterval(function () {
-			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
-
 			if (currentSlide == slideCount) {
 				currentSlide = 1;
 			} else {
 				currentSlide++;
 			}
+
+			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
 		}, speed);
 
 		return self;
