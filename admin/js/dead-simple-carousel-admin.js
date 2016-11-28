@@ -102,8 +102,8 @@
       var id = $slide.find('input[type="hidden"]').prop('id');
       var number = parseInt(name.match(/image(\d+)/)[1]);
 
-      name = name.replace(/image\d+/, 'image'+number+1);
-      id = id.replace(/image\d+/, 'image'+number+1);
+      name = name.replace(/image\d+\]/, 'image'+(number+1)+']');
+      id = id.replace(/image\d+$/, 'image'+(number+1));
 
       var $clone = $slide.clone();
 
@@ -117,7 +117,6 @@
       $clone.find('.thumbnail-image').html('');
       $clone.find('input[type="checkbox"]').replaceNumber(number, number+1).removeAttr('checked');
       $clone.find('input[name*="url"]').replaceNumber(number, number+1).val('');
-
 
       $slide.after( $clone );
 
@@ -134,6 +133,10 @@
     field = parseFieldID(this.attr('id'));
     field.name = field.name.replace(old_number, new_number); 
     this.attr('id', getFieldID(field));
+
+    if(this.attr('type') == 'checkbox' && this.parent().prop('tagName') == 'LABEL') {
+      this.parent().attr('for', getFieldID(field));
+    }
 
     return this;
   }
