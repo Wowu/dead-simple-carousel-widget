@@ -5,6 +5,7 @@
 
 .dscw {
 	width: 100%;
+	overflow: hidden;
 }
 
 .dscw__slides {
