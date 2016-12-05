@@ -1,4 +1,6 @@
 (function($) {
+  window.$ = $
+
   'use strict';
 
   function updateBindings() {
@@ -31,20 +33,23 @@
       });
       
       frame.on('select', function() {
-       // Get media attachment details from the frame state
-       var attachment = frame.state().get('selection').first().toJSON();
+        // Get media attachment details from the frame state
+        var attachment = frame.state().get('selection').first().toJSON();
 
-       // Send the attachment URL to our custom image input field.
-       imageContainer.find('img').remove();
-       imageContainer.append('<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>');
+        // Send the attachment URL to our custom image input field.
+        imageContainer.find('img').remove();
+        imageContainer.append('<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>');
 
-       // Send the attachment id to our hidden input
-       imageIdHiddenButton.val(attachment.url);
+        // Send the attachment id to our hidden input
+        imageIdHiddenButton.val(attachment.url);
 
-       placeholder.addClass('hidden');
+        // Force change event to auto-save widget in wordpress live view
+        imageIdHiddenButton.change();
 
-       // Unhide the remove image link
-       deleteImageLink.removeClass('hidden');
+        placeholder.addClass('hidden');
+
+        // Unhide the remove image link
+        deleteImageLink.removeClass('hidden');
       });
 
       // Finally, open the modal on click

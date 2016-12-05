@@ -17,13 +17,14 @@
     // Creating widget front-end
     // This is where the action happens
     public function widget( $args, $instance ) {
-      $title = apply_filters( 'widget_title', $instance['title'] );
+      $title = isset( $instance['title'] ) ? $instance['title'] : ''; 
+      $title = apply_filters( 'widget_title', $title );
       // before and after widget arguments are defined by themes
       echo $args['before_widget'];
       if ( ! empty( $title ) )
       echo $args['before_title'] . $title . $args['after_title'];
 
-      $slides_count = $instance['slides_count'];
+      $slides_count = isset( $instance['slides_count'] ) ? $instance['slides_count'] : 0;
 
       $data['instance'] = $instance;
       $data['slides_count'] = $slides_count;
