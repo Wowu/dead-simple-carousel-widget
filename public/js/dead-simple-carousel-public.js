@@ -47,10 +47,10 @@
 		}, speed);
 
 
-		var arrow_left = self.find('.dscw__arrow--left');
-		var arrow_right = self.find('.dscw__arrow--right');
+		var arrowLeft = self.find('.dscw__arrow--left');
+		var arrowRight = self.find('.dscw__arrow--right');
 
-		arrow_left.click(function(event) {
+		arrowLeft.click(function(event) {
 			if (currentSlide == 1) {
 				currentSlide = slideCount;	
 			} else {
@@ -60,7 +60,7 @@
 			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
 		});
 
-		arrow_right.click(function(event) {
+		arrowRight.click(function(event) {
 			if (currentSlide == slideCount) {
 				currentSlide = 1;
 			} else {

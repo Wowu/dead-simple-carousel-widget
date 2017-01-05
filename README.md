@@ -1,4 +1,4 @@
-# (WIP) Dead Simple Carousel Widget
+# Dead Simple Carousel Widget
 
 WordPress widget for displaying hyperlinked images. Dead simple.
 
