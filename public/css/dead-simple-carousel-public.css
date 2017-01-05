@@ -6,6 +6,11 @@
 .dscw {
 	width: 100%;
 	overflow: hidden;
+	position: relative;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 
 .dscw__slides {
@@ -20,6 +25,45 @@
 	-ms-transition: transform .3s ease-in-out;
 	-o-transition: transform .3s ease-in-out;
 	transition: transform .3s ease-in-out;
+}
+
+.dscw:hover .dscw__arrow {
+	opacity: 1;
+}
+
+.dscw__arrow {
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	position: absolute;
+	top: 50%;
+	z-index: 100;
+	opacity: 0;
+	text-align: center;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	-webkit-transition: opacity .3s ease-in-out;
+	-moz-transition: opacity .3s ease-in-out;
+	-ms-transition: opacity .3s ease-in-out;
+	-o-transition: opacity .3s ease-in-out;
+	transition: opacity .3s ease-in-out;
+}
+
+.dscw__arrow--left {
+	left: 20px;
+
+	border-right: 10px solid #1B1C25;
+	border-bottom: 10px solid #1B1C25;
+	transform: rotate(135deg);
+}
+
+.dscw__arrow--right {
+	right: 20px;
+
+	border-right: 10px solid #1B1C25;
+	border-bottom: 10px solid #1B1C25;
+	transform: rotate(-45deg);
 }
 
 .dscw__slides__image,

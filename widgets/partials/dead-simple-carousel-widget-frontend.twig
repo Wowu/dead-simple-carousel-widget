@@ -1,4 +1,8 @@
 <div class="dscw" data-speed="{{ instance.slide_time | e }}">
+  {% if show_arrows %}
+    <div class="dscw__arrow dscw__arrow--left"></div>
+  {% endif %}
+
   <div class="dscw__slides">
     {% for i in 1..slides_count %}
 
@@ -17,4 +21,8 @@
       {% endif %}
     {% endfor %}
   </div>
+
+  {% if show_arrows %}
+    <div class="dscw__arrow dscw__arrow--right"></div>
+  {% endif %}
 </div>

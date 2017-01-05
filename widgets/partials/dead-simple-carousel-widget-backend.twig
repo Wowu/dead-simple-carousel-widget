@@ -17,6 +17,16 @@
 
 
   <input class="slides-count" type="hidden" name="{{ slides_count.name }}" id="{{ slides_count.id }}" value="{{ slides_count.count | e }}">
+
+  <p>
+    <label for="{{ show_arrows.id }}">
+      <input type="checkbox" id="{{ show_arrows.id }}" name="{{ show_arrows.name }}" {{ show_arrows.checked }} />
+
+      {{ __( 'Show navigation arrows?', 'dead-simple-carousel' ) }}
+    </label>
+  </p>
+
+  <hr>
   
   <div class="slides {{ id }}">
     {% for i in 1..slides_count.count %}

@@ -28,6 +28,7 @@
 
       $data['instance'] = $instance;
       $data['slides_count'] = $slides_count;
+      $data['show_arrows'] = isset( $instance['show_arrows'] ) ? true : false;
 
       Timber::render('partials/dead-simple-carousel-widget-frontend.twig', $data);
 
@@ -39,6 +40,7 @@
       $title         = isset( $instance['title'] ) ? $instance['title'] : __( 'New title', 'dead-simple-carousel' );
       $slides_count  = isset( $instance['slides_count'] ) ? $instance['slides_count'] : 1;
       $slide_time  = isset( $instance['slide_time'] ) ? $instance['slide_time'] : 3000;
+      $show_arrows  = isset( $instance['show_arrows'] ) ? 'checked="checked"' : '';
 
       $data = array(
         'id' => $this->id,
@@ -59,6 +61,12 @@
           'time' => $slide_time,
           'id' => $this->get_field_id( 'slide_time' ),
           'name' => $this->get_field_name( 'slide_time' ),
+        ),
+
+        'show_arrows' => array(
+          'id' => $this->get_field_id( 'show_arrows' ),
+          'name' => $this->get_field_name( 'show_arrows' ),
+          'checked' => $show_arrows,
         ),
 
         'image' => array(),
@@ -98,6 +106,7 @@
       $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
       $instance['slides_count'] = ( ! empty( $new_instance['slides_count'] ) ) ? strip_tags( $new_instance['slides_count'] ) : '';
       $instance['slide_time'] = ( ! empty( $new_instance['slide_time'] ) ) ? strip_tags( $new_instance['slide_time'] ) : '';
+      $instance['show_arrows'] = $new_instance['show_arrows'];
 
       for ( $i = 1; $i <= $instance['slides_count']; $i++ ) {
         $instance['image'.$i] = ( ! empty( $new_instance['image'.$i] ) ) ? strip_tags( $new_instance['image'.$i] ) : '';

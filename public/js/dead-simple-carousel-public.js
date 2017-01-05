@@ -5,11 +5,31 @@
 		var self = this;
 		var speed = self.data('speed') || 3000;
 		var slideCount = self.find('img').length;
-		var slideWidth = self.width();
+		var slideWidth = 0;
 
-		self.find('.dscw__slides').css('width', slideCount * slideWidth + 'px');
-		self.find('.dscw__slides__image').css('width', slideWidth+'px');
-		self.find('.dscw__slides').css('transform', 'translateX(0px)');
+		var maxHeight = 0
+
+		function RWD() {
+			slideWidth = self.width();
+
+			self.find('img').each(function(index) {
+				if (maxHeight < this.height) {
+					maxHeight = this.height;
+				}
+			});
+
+			self.find('.dscw__slides').css('height', maxHeight + 'px');
+			self.find('.dscw__slides').css('width', slideCount * slideWidth + 'px');
+			self.find('.dscw__slides__image').css('width', slideWidth+'px');
+			self.find('.dscw__slides').css('transform', 'translateX(0px)');
+
+		}
+
+		window.onresize = function(event) {
+			RWD();
+		};
+
+		RWD();
 
 		// Prevent content flickering
 		self.find('.dscw__slides').css('opacity', '1');
@@ -25,6 +45,30 @@
 
 			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
 		}, speed);
+
+
+		var arrow_left = self.find('.dscw__arrow--left');
+		var arrow_right = self.find('.dscw__arrow--right');
+
+		arrow_left.click(function(event) {
+			if (currentSlide == 1) {
+				currentSlide = slideCount;	
+			} else {
+				currentSlide--;
+			}
+
+			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
+		});
+
+		arrow_right.click(function(event) {
+			if (currentSlide == slideCount) {
+				currentSlide = 1;
+			} else {
+				currentSlide++;
+			}
+
+			self.find('.dscw__slides').css('transform', 'translateX(' + (-slideWidth * currentSlide + slideWidth) + 'px)');
+		});
 
 		return self;
 	};
